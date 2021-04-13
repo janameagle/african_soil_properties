@@ -16,14 +16,14 @@ coi <- c("Benin", "Burkina Faso", "Cabo Verde", "Gambia",
 
 
 
-#### clay content ########################
+#### silt content ########################
 # get the soil bulk density
 # access and crop 
 tif20 <- paste0("/vsicurl/https://s3.eu-central-1.wasabisys.com/africa-soil/layers30m/", 
-                   c("sol_clay_tot_psa_m_30m_0..20cm_2001..2017_africa_epsg4326_v0.1.tif"))
+                c("sol_silt_tot_psa_m_30m_0..20cm_2001..2017_africa_epsg4326_v0.1.tif"))
 
 tif50 <- paste0("/vsicurl/https://s3.eu-central-1.wasabisys.com/africa-soil/layers30m/", 
-                   c("sol_clay_tot_psa_m_30m_20..50cm_2001..2017_africa_epsg4326_v0.1.tif"))
+                c("sol_silt_tot_psa_m_30m_20..50cm_2001..2017_africa_epsg4326_v0.1.tif"))
 
 
 
@@ -31,7 +31,7 @@ tif50 <- paste0("/vsicurl/https://s3.eu-central-1.wasabisys.com/africa-soil/laye
 all_20 <- rast(tif20) # get the different rasters from online
 all_50 <- rast(tif50) # get the different rasters from online
 
-coi <- c("Gambia", 
+coi <- c("Benin", "Burkina Faso", "Gambia", 
          "Ghana","Ivory Coast", "Mali", "Niger", "Nigeria", "Senegal", "Togo")
 
 for (k in coi) {
@@ -56,7 +56,7 @@ for (k in coi) {
   
   # save the new cropped raster
   print("writing file")
-  writeRaster(data_ctr_msk, paste0("output/", k, "/clay_content_0m_20m_", k, ".tif"))
+  writeRaster(data_ctr_msk, paste0("output/", k, "/silt_content_0m_20m_", k, ".tif"))
   
   print("50m")
   data_ctr <- crop(data_50, aoi.v)
@@ -72,20 +72,20 @@ for (k in coi) {
   # save the new cropped raster
   print("writing file")  
   
-  writeRaster(data_ctr_msk, paste0("output/", k, "/clay_content_20m_50m_", k, ".tif"))
-  print(paste0(k, "done"))
+  writeRaster(data_ctr_msk, paste0("output/", k, "/silt_content_20m_50m_", k, ".tif"))
+  print(paste0(k, " done"))
 }
 
 
 
 
-#### clay content error ########################
+#### silt content error ########################
 # access and crop 
 tif20 <- paste0("/vsicurl/https://s3.eu-central-1.wasabisys.com/africa-soil/layers30m/", 
-                   c("sol_clay_tot_psa_md_30m_0..20cm_2001..2017_africa_epsg4326_v0.1.tif"))
+                c("sol_silt_tot_psa_md_30m_0..20cm_2001..2017_africa_epsg4326_v0.1.tif"))
 
 tif50 <- paste0("/vsicurl/https://s3.eu-central-1.wasabisys.com/africa-soil/layers30m/", 
-                   c("sol_clay_tot_psa_md_30m_20..50cm_2001..2017_africa_epsg4326_v0.1.tif"))
+                c("sol_silt_tot_psa_md_30m_20..50cm_2001..2017_africa_epsg4326_v0.1.tif"))
 
 # md data is the associated prediction error
 #### automatic loop ###################
@@ -116,7 +116,7 @@ for (k in coi) {
   
   # save the new cropped raster
   print("writing file")
-  writeRaster(data_ctr_msk, paste0("output/", k, "/clay_content_0m_20m_errors_", k, ".tif"), overwrite=T)
+  writeRaster(data_ctr_msk, paste0("output/", k, "/silt_content_0m_20m_errors_", k, ".tif"), overwrite = T)
   
   print("50m")
   data_ctr <- crop(data_50, aoi.v)
@@ -132,7 +132,7 @@ for (k in coi) {
   # save the new cropped raster
   print("writing file")  
   
-  writeRaster(data_ctr_msk, paste0("output/", k, "/clay_content_20m_50m_errors_", k, ".tif"))
+  writeRaster(data_ctr_msk, paste0("output/", k, "/silt_content_20m_50m_errors_", k, ".tif"))
   print(paste0(k, " done"))
 }
 
