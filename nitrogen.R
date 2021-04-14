@@ -4,7 +4,7 @@
 #### workflow: https://gitlab.com/openlandmap/africa-soil-and-agronomy-data-cube
 ################################################################################
 
-data <- "organic_carbon"
+data <- "nitrogen"
 
 library(rgdal)
 library(terra)
@@ -15,17 +15,17 @@ countries <- readOGR("C:/Users/jmaie/Documents/WASCAL-DE_Coop/african_soil_prope
 
 coi <- c("Benin", "Burkina Faso", "Cabo Verde", "Gambia", 
          "Ghana","Ivory Coast", "Mali", "Niger", "Nigeria", "Senegal", "Togo")
-crs(countries)
 
 
-#### organic carbon ########################
+
+#### nitrogen ########################
 # get the soil bulk density
 # access and crop 
 tif20 <- paste0("/vsicurl/https://s3.eu-central-1.wasabisys.com/africa-soil/layers30m/", 
-                c("sol_log.oc_m_30m_0..20cm_2001..2017_africa_epsg4326_v0.1.tif"))
+                c("sol_log.n_tot_ncs_m_30m_0..20cm_2001..2017_africa_epsg4326_v0.1.tif"))
 
 tif50 <- paste0("/vsicurl/https://s3.eu-central-1.wasabisys.com/africa-soil/layers30m/", 
-                c("sol_log.oc_m_30m_20..50cm_2001..2017_africa_epsg4326_v0.1.tif"))
+                c("sol_log.n_tot_ncs_m_30m_20..50cm_2001..2017_africa_epsg4326_v0.1.tif"))
 
 
 
@@ -33,7 +33,8 @@ tif50 <- paste0("/vsicurl/https://s3.eu-central-1.wasabisys.com/africa-soil/laye
 all_20 <- rast(tif20) # get the different rasters from online
 all_50 <- rast(tif50) # get the different rasters from online
 
-coi <- c("Niger", "Nigeria", "Senegal", "Togo")
+coi <- c("Benin", "Burkina Faso", "Gambia", 
+         "Ghana","Ivory Coast", "Mali", "Niger", "Nigeria", "Senegal", "Togo")
 
 for (k in coi) {
   print(k)
@@ -80,13 +81,13 @@ for (k in coi) {
 
 
 
-#### organic carbon error ########################
+#### nitrogen error ########################
 # access and crop 
 tif20 <- paste0("/vsicurl/https://s3.eu-central-1.wasabisys.com/africa-soil/layers30m/", 
-                c("sol_log.oc_md_30m_0..20cm_2001..2017_africa_epsg4326_v0.1.tif"))
+                c("sol_log.n_tot_ncs_md_30m_0..20cm_2001..2017_africa_epsg4326_v0.1.tif"))
 
 tif50 <- paste0("/vsicurl/https://s3.eu-central-1.wasabisys.com/africa-soil/layers30m/", 
-                c("sol_log.oc_md_30m_20..50cm_2001..2017_africa_epsg4326_v0.1.tif"))
+                c("sol_log.n_tot_ncs_md_30m_20..50cm_2001..2017_africa_epsg4326_v0.1.tif"))
 
 # md data is the associated prediction error
 #### automatic loop ###################

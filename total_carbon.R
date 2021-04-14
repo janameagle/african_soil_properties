@@ -33,8 +33,7 @@ tif50 <- paste0("/vsicurl/https://s3.eu-central-1.wasabisys.com/africa-soil/laye
 all_20 <- rast(tif20) # get the different rasters from online
 all_50 <- rast(tif50) # get the different rasters from online
 
-coi <- c("Benin", "Burkina Faso", "Gambia", 
-         "Ghana","Ivory Coast", "Mali", "Niger", "Nigeria", "Senegal", "Togo")
+coi <- c("Niger", "Nigeria", "Senegal", "Togo")
 
 for (k in coi) {
   print(k)
@@ -115,7 +114,7 @@ for (k in coi) {
   print("masked")
   
   # plot(bd30m_ctr[[1]])
-  plot(data_ctr_msk)
+  # plot(data_ctr_msk)
   
   # save the new cropped raster
   print("writing file")
@@ -130,7 +129,7 @@ for (k in coi) {
   print("masked")
   
   # plot(bd30m_ctr[[1]])
-  plot(data_ctr_msk)
+  # plot(data_ctr_msk)
   
   # save the new cropped raster
   print("writing file")  

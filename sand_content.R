@@ -91,8 +91,7 @@ tif50 <- paste0("/vsicurl/https://s3.eu-central-1.wasabisys.com/africa-soil/laye
 data_all_20 <- rast(tif20) # get the different rasters from online
 data_all_50 <- rast(tif50) # get the different rasters from online
 
-coi <- c("Benin", "Burkina Faso", "Gambia", 
-         "Ghana","Ivory Coast", "Mali", "Niger", "Nigeria", "Senegal", "Togo")
+coi <- c("Mali", "Niger", "Nigeria", "Senegal", "Togo")
 
 for (k in coi) {
   print(k)

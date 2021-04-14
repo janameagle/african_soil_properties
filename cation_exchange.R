@@ -4,7 +4,7 @@
 #### workflow: https://gitlab.com/openlandmap/africa-soil-and-agronomy-data-cube
 ################################################################################
 
-data <- "organic_carbon"
+data <- "cation_exchange"
 
 library(rgdal)
 library(terra)
@@ -15,17 +15,17 @@ countries <- readOGR("C:/Users/jmaie/Documents/WASCAL-DE_Coop/african_soil_prope
 
 coi <- c("Benin", "Burkina Faso", "Cabo Verde", "Gambia", 
          "Ghana","Ivory Coast", "Mali", "Niger", "Nigeria", "Senegal", "Togo")
-crs(countries)
 
 
-#### organic carbon ########################
+
+#### cation exchange capacity ########################
 # get the soil bulk density
 # access and crop 
 tif20 <- paste0("/vsicurl/https://s3.eu-central-1.wasabisys.com/africa-soil/layers30m/", 
-                c("sol_log.oc_m_30m_0..20cm_2001..2017_africa_epsg4326_v0.1.tif"))
+                c("sol_log.ecec.f_m_30m_0..20cm_2001..2017_africa_epsg4326_v0.1.tif"))
 
 tif50 <- paste0("/vsicurl/https://s3.eu-central-1.wasabisys.com/africa-soil/layers30m/", 
-                c("sol_log.oc_m_30m_20..50cm_2001..2017_africa_epsg4326_v0.1.tif"))
+                c("sol_log.ecec.f_m_30m_20..50cm_2001..2017_africa_epsg4326_v0.1.tif"))
 
 
 
@@ -80,13 +80,13 @@ for (k in coi) {
 
 
 
-#### organic carbon error ########################
+#### cation exchange capacity error ########################
 # access and crop 
 tif20 <- paste0("/vsicurl/https://s3.eu-central-1.wasabisys.com/africa-soil/layers30m/", 
-                c("sol_log.oc_md_30m_0..20cm_2001..2017_africa_epsg4326_v0.1.tif"))
+                c("sol_log.ecec.f_md_30m_0..20cm_2001..2017_africa_epsg4326_v0.1.tif"))
 
 tif50 <- paste0("/vsicurl/https://s3.eu-central-1.wasabisys.com/africa-soil/layers30m/", 
-                c("sol_log.oc_md_30m_20..50cm_2001..2017_africa_epsg4326_v0.1.tif"))
+                c("sol_log.ecec.f_md_30m_20..50cm_2001..2017_africa_epsg4326_v0.1.tif"))
 
 # md data is the associated prediction error
 #### automatic loop ###################
@@ -114,7 +114,7 @@ for (k in coi) {
   print("masked")
   
   # plot(bd30m_ctr[[1]])
-  plot(data_ctr_msk)
+  # plot(data_ctr_msk)
   
   # save the new cropped raster
   print("writing file")
@@ -129,7 +129,7 @@ for (k in coi) {
   print("masked")
   
   # plot(bd30m_ctr[[1]])
-  plot(data_ctr_msk)
+  # plot(data_ctr_msk)
   
   # save the new cropped raster
   print("writing file")  
